@@ -24,6 +24,7 @@ Patches Applied
 ---------------
 
 - tabbed-autohide-20201222-dabf6a2.diff : Hide the tab bar if only one tab is open
+- tabbed-bar-height-0.6.diff : Allow the bar height to be manually specified
 
 Stay Synced with Upstream
 -------------------------
