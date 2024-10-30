@@ -20,3 +20,20 @@ Running tabbed
 --------------
 See the man page for details.
 
+Patches Applied
+---------------
+
+- tabbed-autohide-20201222-dabf6a2.diff : Hide the tab bar if only one tab is open
+
+Stay Synced with Upstream
+-------------------------
+
+After cloning this repo, add the upstream repository as a remote:
+
+    $ git remote add upstream "https://git.suckless.org/tabbed"
+
+To merge changes from upstream:
+
+    $ git fetch upstream
+    $ git merge upstream/master
+
