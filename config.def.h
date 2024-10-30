@@ -15,6 +15,7 @@ static const int  tabwidth      = 200;
 static const Bool foreground    = True;
 static       Bool urgentswitch  = False;
 static const Bool barHeight     = 24;
+static const int  separator     = 1;
 
 /*
  * Where to place a new tab when it is opened. When npisrelative is True,
