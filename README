@@ -25,9 +25,12 @@ Patches Applied
 
 - tabbed-autohide-20201222-dabf6a2.diff : Hide the tab bar if only one tab is open
 - tabbed-bar-height-0.6.diff : Allow the bar height to be manually specified
+- tabbed-basenames-0.7.diff : Show only the basename of the tabbed title; useful with zathura. Toggle with -b
 - tabbed-drag-20230128-41e2b8f.diff : Support dragging tabs with the mouse
 - tabbed-separator-20230128-41e2b8f.diff : Add a decorative separator to each tab
 - tabbed-xresources-signal-reloading-20220622-014eabf.diff : Use Xresources and reload with SIGUSR1
+
+look at hidetabs patch
 
 Stay Synced with Upstream
 -------------------------
