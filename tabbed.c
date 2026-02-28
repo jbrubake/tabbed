@@ -267,7 +267,7 @@ cleanup(void)
 {
 	int i;
 
-	for (i = 0; i < nclients; i++) {
+	for (i = nclients - 1; i >= 0; i--) {
 		focus(i);
 		killclient(NULL);
 		XReparentWindow(dpy, clients[i]->win, root, 0, 0);
@@ -518,6 +518,7 @@ focus(int c)
 	char buf[BUFSIZ] = "tabbed-"VERSION" ::";
 	size_t i, n;
 	XWMHints* wmh;
+	XWMHints* win_wmh;
 
 	/* If c, sel and clients are -1, raise tabbed-win itself */
 	if (nclients == 0) {
@@ -551,6 +552,17 @@ focus(int c)
 		XSetWMHints(dpy, clients[c]->win, wmh);
 		clients[c]->urgent = False;
 		XFree(wmh);
+
+		/*
+		 * gnome-shell will not stop notifying us about urgency,
+		 * if we clear only the client hint and don't clear the
+		 * hint from the main container window
+		 */
+		if ((win_wmh = XGetWMHints(dpy, win))) {
+			win_wmh->flags &= ~XUrgencyHint;
+			XSetWMHints(dpy, win, win_wmh);
+			XFree(win_wmh);
+		}
 	}
 
 	drawbar();
@@ -1335,7 +1347,7 @@ xsettitle(Window w, const char *str)
 	XTextProperty xtp;
 
 	if (XmbTextListToTextProperty(dpy, (char **)&str, 1,
-	    XCompoundTextStyle, &xtp) == Success) {
+	    XUTF8StringStyle, &xtp) == Success) {
 		XSetTextProperty(dpy, w, &xtp, wmatom[WMName]);
 		XSetTextProperty(dpy, w, &xtp, XA_WM_NAME);
 		XFree(xtp.value);
